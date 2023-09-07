@@ -1,0 +1,34 @@
+{
+    "test-data": [
+        {
+            "class-id": 10,
+            "name": "foo",
+            "test-result": [
+                91,
+                78,
+                87
+            ],
+            "passed": true
+        },
+        {
+            "class-id": 11,
+            "name": "bar",
+            "test-result": [
+                45,
+                null,
+                59
+            ],
+            "passed": false
+        },
+        {
+            "class-id": 12,
+            "name": "baz",
+            "test-result": [
+                99,
+                96,
+                97
+            ],
+            "passed": true
+        }
+    ]
+}
