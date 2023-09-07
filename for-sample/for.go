@@ -1,6 +1,1 @@
-package for-sample
-
-impot (
-	"fmt"
-	
-)
+package main
