@@ -1,4 +1,4 @@
-package if-sample
+package main
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 )
 
 // ランダム生成された1~10の整数で今日の運勢を占う
-func ifToday() {
+func main() {
 
 	var num int = (rand.Intn(10))
 	fmt.Println(num)

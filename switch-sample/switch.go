@@ -1,4 +1,4 @@
-package switch-sample
+package main
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 )
 
 // 現在時刻を取得し時刻に合わせて挨拶をする
-func switchHour() {
+func main() {
 	// 「13:00」と出力したくstringをintに変換したがiが出力されない
 	var s string = ":00"
 	i, _ := strconv.Atoi(s)
