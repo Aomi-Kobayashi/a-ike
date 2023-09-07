@@ -1,34 +1,112 @@
-{
-    "test-data": [
-        {
-            "class-id": 10,
-            "name": "foo",
-            "test-result": [
-                91,
-                78,
-                87
-            ],
-            "passed": true
-        },
-        {
-            "class-id": 11,
-            "name": "bar",
-            "test-result": [
-                45,
-                null,
-                59
-            ],
-            "passed": false
-        },
-        {
-            "class-id": 12,
-            "name": "baz",
-            "test-result": [
-                99,
-                96,
-                97
-            ],
-            "passed": true
-        }
-    ]
-}
+[
+    {
+        "class-id": 1,
+        "name": "user0",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 2,
+        "name": "user1",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 3,
+        "name": "user2",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 4,
+        "name": "user3",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 5,
+        "name": "user4",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 6,
+        "name": "user5",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 7,
+        "name": "user6",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 8,
+        "name": "user7",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 9,
+        "name": "user8",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 10,
+        "name": "user9",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    },
+    {
+        "class-id": 11,
+        "name": "user10",
+        "test-result": [
+            1,
+            2,
+            3
+        ],
+        "passed": true
+    }
+]
