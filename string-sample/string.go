@@ -23,15 +23,15 @@ func main() {
 	fmt.Println(s[0:9])
 	fmt.Println(s[9:])
 	fmt.Println(s[:9])
-	fmt.Println(s[:])
+	fmt.Println(s[:]) // All
 
 	// 両端トリム
 	s = "     VALORANT    "
-	fmt.Printf("[%s]/n", strings.TrimSpace(s))
+	fmt.Printf("[%s]\n", strings.TrimSpace(s))
 
 	// トリム対象指定
 	s = "     VALORANT    "
-	fmt.Printf("[%s]/n", strings.Trim(s, " "))
+	fmt.Printf("[%s]\n", strings.Trim(s, " "))
 
 	// 左、右トリム
 	s = "     VALORANT     "
@@ -56,7 +56,7 @@ func main() {
 
 	// 先頭一致
 	s = "Apple Bear Cookie Dog Earth Fox Git"
-	fmt.Println(strings.HasPrefix(s, "Aplle"))
+	fmt.Println(strings.HasPrefix(s, "Apple"))
 
 	// 後方一致
 	s = "Apple Bear Cookie Dog Earth Fox Git"
@@ -64,12 +64,12 @@ func main() {
 
 	// 文字列変換
 	s = "bookbookbookbook"
-	fmt.Println(strings.Replace(s, "oo", "uu", 3))
-	fmt.Println(strings.Replace(s, "oo", "ee", -1))
+	fmt.Println(strings.Replace(s, "oo", "uu", 3))  // 3個
+	fmt.Println(strings.Replace(s, "oo", "ee", -1)) // All
 
 	// 繰り返し
 	s = "apex"
-	fmt.Println(strings.Repeat(s, 4))
+	fmt.Println(strings.Repeat(s, 4)) // 4回繰り返し
 
 	// タイトルケースへの変換
 	s = "apple bear cookie dog earth fox git"
@@ -77,8 +77,8 @@ func main() {
 
 	// 分割
 	s = "Apple Bear Cookie Dog Earth Fox Git"
-	slice := strings.Split(s, "")
-	for _, str := range slice {
+	slice := strings.Split(s, " ") // space区切りで分割
+	for _, str := range slice {    // sliceの数だけforで回す
 		fmt.Printf("[%s]", str)
 	}
 	fmt.Println("")
@@ -105,7 +105,7 @@ func main() {
 
 	// 文字列→浮動小数点変換
 	s = "990.339"
-	sf, _ := strconv.ParseFloat(s, 64)
+	sf, _ := strconv.ParseFloat(s, 64) // sfに代入
 	sf = sf + 0.1
 	fmt.Println(sf)
 }
