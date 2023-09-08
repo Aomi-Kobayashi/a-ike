@@ -1,0 +1,35 @@
+[
+
+	{
+		"game-id": 1,
+		"game-name": "Valorant",
+		"company": "Riot",
+		"team-people": 5,
+		"rank": [
+			"aian",
+			"bronz",
+			"silver",
+			"gold",
+			"platinum",
+			"daiamond",
+			"imortal",
+			"rediant"
+		]
+	},
+	{
+		"game-id": 2,
+		"game-name": "Apex",
+		"company": "EA",
+		"team-people": 3,
+		"rank": [
+			"rookie",
+			"bronz",
+			"silver",
+			"gold",
+			"platinum",
+			"daiamond",
+			"master",
+			"predator"
+		]
+	}
+]

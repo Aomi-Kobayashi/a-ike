@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func main() {
+func StringsMethod() {
 
 	// 結合
 	s := "VALORANT"
