@@ -21,15 +21,21 @@ type Log struct {
 	PTime     int64  `json:ptime"`     // 投稿時間
 }
 
+// サーバを起動する
 func main() {
-	println("server - http://localhost:8888")
-
+	println("server - http://localhost:8888") // 案内
+	// URLに対応する表示するハンドラを作成
 	http.HandleFunc("/", showHandler)
+	// 書き込みハンドラを作成
 	http.HandleFunc("/write", writeHandler)
-
-	http.ListenAndServe(":8888", nil)
+	// サーバ起動 Getで何も渡さないのでnil
+	if err := http.ListenAndServe(":8888", nil); err != nil {
+		fmt.Println("Server startup failed", err)
+	}
+	fmt.Println("Succese")
 }
 
+// 書き込んだものを画面に表示する
 func showHandler(w http.ResponseWriter, r *http.Request) {
 
 	htmlLog := ""
@@ -86,10 +92,15 @@ func loadLogs() []Log {
 		// 初期値0のLog型配列を作成し返す
 		return make([]Log, 0)
 	}
-
+	// jsonをパース
 	var logs []Log
-	json.Unmarshal([]byte(text), &logs)
-	return logs
+	if err := json.Unmarshal([]byte(text), &logs); err != nil {
+		fmt.Println("Parsing failed", err)
+		// 初期値0のLog型配列を作成し返す
+		return make([]Log, 0)
+	}
+
+	return logs // 成功したらlogsに返す
 }
 
 func saveLogs(logs []Log) {
