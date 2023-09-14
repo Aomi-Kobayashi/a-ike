@@ -52,8 +52,12 @@ func showHandler(writeRes http.ResponseWriter, req *http.Request) {
 	}
 
 	// html全体を出力
-	htmlBody := "<html><head><link rel= 'stylesheet' href='/style/style.css'><style>" +
-		"</style></head><body><h1>掲示板</h1>" +
+	htmlBody := "<html><head><style>" +
+		"body { position: relative; width: auto; height: auto; text-align: center;}" +
+		"form {position: relative; z-index: 1; background: #FFFFFF; max-width: 360px; margin: 0 auto 100px; padding: 45px; text-align: center;}" +
+		"p { border: 1px solid silver; padding: 1em;} " +
+		"span { background-color: #eef; } " +
+		"</style></head><body><h1>ゲームフレンド募集掲示板</h1>" +
 		getForm() + htmlLog + "</body></html>"
 	// htmlをキャストして書き込む
 	writeRes.Write([]byte(htmlBody))
@@ -81,10 +85,10 @@ func writeHandler(writeRes http.ResponseWriter, req *http.Request) {
 // 画面上部の書き込みフォームを返す/writeに向けてPostで送信
 func getForm() string {
 	return "<div><form action='/write' method='POST'>" +
-		"名前: <input type='text' name='name'><br>" +
-		"ゲームタイトル: <input type='text' name='gametitle'><br>" +
-		"本文: <input type='text' name='body' style='width:30em;'>" +
-		"<br><input type='submit' value='書込'>" +
+		"名前 <input type='text' name='name' style='width:25em;'><br>" +
+		"ゲームタイトル <input type='text' name='gametitle' style='width:25em;'><br>" +
+		"本文 <input type='text' name='body' style='width:25em; height:10em;'>" +
+		"<br><input type='submit' id='write' value='書込'>" +
 		"</form></div><hr>"
 }
 
@@ -115,64 +119,3 @@ func saveLogs(logs []Log) {
 	json.Indent(out, bytes2, "", "    ") // JSONテキストの成形
 	ioutil.WriteFile(logFile, []byte(out.String()), 0644)
 }
-
-// リクエストを処理する関数
-// func menuHandler(w http.ResponseWriter, r *http.Request) {
-// 	html, err := template.ParseFiles("menu.html")
-// 	if err != nil {
-// 		log.Fatal(err)
-
-// 	}
-// 	if err := html.Execute(w, nil); err != nil {
-// 		log.Fatal(err)
-
-// 	}
-// }
-
-// func main() {
-// 	// リクエストを処理する関数を登録
-// 	http.HandleFunc("/", menuHandler)
-
-// 	// Webサーバの設定
-// 	server := http.Server{
-// 		// ホスト名とポート番号
-// 		Addr:    ":8080",
-// 		Handler: nil,
-// 		// リクエスト読み取りタイムアウト
-// 		ReadTimeout: 30 * time.Second,
-// 		// レスポンス書き込みのタイムアウト
-// 		WriteTimeout: 60 * time.Second,
-// 		// リクエストヘッダの最大バイト長
-// 		MaxHeaderBytes: 1 << 20,
-// 	}
-
-// 	fmt.Println("Server Start Up........")
-// 	// Webサーバの起動
-// 	server.ListenAndServe()
-// }
-
-// // リクエストを受け付ける処理
-// func menuHandler(w http.ResponseWriter, r *http.Request) {
-// 	t, err := template.ParseFiles("menu.html")
-// 	if err != nil {
-// 		panic("fact: html file not found")
-// 	}
-// 	if err := t.Execute(w, nil); err != nil {
-// 		panic(err.Error())
-// 	}
-// }
-
-// // リクエストを受け付ける処理（ハンドラ）
-// func defaultRoute(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintf(w, "This is default route.")
-// }
-
-// // リクエストを受け付ける処理（ハンドラ）
-// func route1(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintf(w, "This is /route1.")
-// }
-
-// // リクエストを受け付ける処理（ハンドラ）
-// func route2(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintf(w, "This is /route2.")
-// }
