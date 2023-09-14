@@ -1,38 +1,32 @@
-body{
-    margin: 0;
-    padding: 0;
-    background: #fff;
-  
-    color: #fff;
-    font-family: Arial;
-    font-size: 12px;
-  }
-  
-  .body {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -40px;
-    bottom: -40px;
-    width: auto;
-    height: auto;
-    background-image: url(C:\a-ike\massagebord-app\src\image\carl-raw-m3hn2Kn5Bns-unsplash.jpg);
-    background-size: cover;
-    -webkit-filter: blur(5px);
-    z-index: 0;
-  }
+body {
+  display: inline-block;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -40px;
+  bottom: -40px;
+  width: auto;
+  height: auto;
+  background-image: url(C:\a-ike\massagebord-app\src\image\carl-raw-m3hn2Kn5Bns-unsplash.jpg);
+  background-size: cover;
+  -webkit-filter: blur(5px);
+  z-index: 0;
+}
 
-  .form input[type=submit]{
-    width: 260px;
-    height: 35px;
-    background: #fff;
-    border: 1px solid #fff;
-    cursor: pointer;
-    border-radius: 2px;
-    color: #a18d6c;
-    font-family: 'Exo', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 6px;
-    margin-top: 10px;
-  }
+h1 {
+  color: blue;
+}
+
+#write {
+  width: 260px;
+  height: 35px;
+  background: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+  border-radius: 2px;
+  color: #a18d6c;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px;
+  margin-top: 10px;
+}

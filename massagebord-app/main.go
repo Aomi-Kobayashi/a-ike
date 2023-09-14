@@ -32,6 +32,7 @@ func main() {
 	// サーバ起動 Getで何も渡さないのでnil
 	if err := http.ListenAndServe(":8888", nil); err != nil {
 		fmt.Println("Server startup failed", err)
+		return
 	}
 	fmt.Println("Succese")
 }
@@ -117,5 +118,9 @@ func saveLogs(logs []Log) {
 	bytes2, _ := json.Marshal(logs)
 	out := new(bytes.Buffer)             // バッファ作成
 	json.Indent(out, bytes2, "", "    ") // JSONテキストの成形
-	ioutil.WriteFile(logFile, []byte(out.String()), 0644)
+	if err := ioutil.WriteFile(logFile, []byte(out.String()), 0644); err != nil {
+		fmt.Println("Save Logs failed", err)
+		return
+	}
+	return
 }
