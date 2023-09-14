@@ -52,9 +52,7 @@ func showHandler(writeRes http.ResponseWriter, req *http.Request) {
 	}
 
 	// html全体を出力
-	htmlBody := "<html><head><style>" +
-		"p { border: 1px solid silver; padding: 1em;} " +
-		"span { background-color: #eef; } " +
+	htmlBody := "<html><head><link rel= 'stylesheet' href='/style/style.css'><style>" +
 		"</style></head><body><h1>掲示板</h1>" +
 		getForm() + htmlLog + "</body></html>"
 	// htmlをキャストして書き込む
