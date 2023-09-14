@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"html"
@@ -24,9 +25,9 @@ type Log struct {
 // サーバを起動する
 func main() {
 	println("server - http://localhost:8888") // 案内
-	// URLに対応する表示するハンドラを作成
+	// パスとハンドラ関数を結びつける
 	http.HandleFunc("/", showHandler)
-	// 書き込みハンドラを作成
+	// パスとハンドラ関数を結びつける
 	http.HandleFunc("/write", writeHandler)
 	// サーバ起動 Getで何も渡さないのでnil
 	if err := http.ListenAndServe(":8888", nil); err != nil {
@@ -35,45 +36,51 @@ func main() {
 	fmt.Println("Succese")
 }
 
-// 書き込んだものを画面に表示する
-func showHandler(w http.ResponseWriter, r *http.Request) {
-
+// 書き込んだものを画面に表示するハンドラ作成
+func showHandler(writeRes http.ResponseWriter, req *http.Request) {
+	// ファイルからログを読み込んで、各ログをhtmlに格納
 	htmlLog := ""
 	logs := loadLogs()
+	// jsonの中身をforで回してiに格納
 	for _, i := range logs {
 		htmlLog += fmt.Sprintf(
 			"<p>(%d) <span>%s</span>: %s --- %s</p>",
 			i.ID,
-			html.EscapeString(i.Name),
+			html.EscapeString(i.Name), // htmlにする文字列をエスケープ
 			html.EscapeString(i.Body),
 			time.Unix(i.PTime, 0).Format("2006/1/2 15:04"))
 	}
 
+	// html全体を出力
 	htmlBody := "<html><head><style>" +
 		"p { border: 1px solid silver; padding: 1em;} " +
 		"span { background-color: #eef; } " +
 		"</style></head><body><h1>掲示板</h1>" +
 		getForm() + htmlLog + "</body></html>"
-	w.Write([]byte(htmlBody))
+	// htmlをキャストして書き込む
+	writeRes.Write([]byte(htmlBody))
 }
 
-func writeHandler(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+// フォームから送信された内容を書き込み
+func writeHandler(writeRes http.ResponseWriter, req *http.Request) {
+	req.ParseForm() // フォームを解析
 	var log Log
-	log.Name = r.Form["name"][0]
-	log.Body = r.Form["body"][0]
-	log.GameTitle = r.Form["gametitle"][0]
+	log.Name = req.Form["name"][0]
+	log.Body = req.Form["body"][0]
+	log.GameTitle = req.Form["gametitle"][0]
+	// Nameが空白の場合、名無しとして書き込み
 	if log.Name == "" {
 		log.Name = "名無し"
 	}
-	logs := loadLogs()
-	log.ID = len(logs) + 1
+	logs := loadLogs()     // 既存データを読み出し
+	log.ID = len(logs) + 1 // 0からなので+1して1から
 	log.PTime = time.Now().Unix()
-	logs = append(logs, log)
-	saveLogs(logs)
-	http.Redirect(w, r, "/", 302)
-
+	logs = append(logs, log)               // 既存データに新規書き込みを追記
+	saveLogs(logs)                         //保存
+	http.Redirect(writeRes, req, "/", 302) // ログ表示を行うルートページへリダイレクト
 }
+
+// 画面上部の書き込みフォームを返す/writeに向けてPostで送信
 func getForm() string {
 	return "<div><form action='/write' method='POST'>" +
 		"名前: <input type='text' name='name'><br>" +
@@ -103,9 +110,12 @@ func loadLogs() []Log {
 	return logs // 成功したらlogsに返す
 }
 
+// 書き込みログを保存する
 func saveLogs(logs []Log) {
-	bytes, _ := json.Marshal(logs)
-	ioutil.WriteFile(logFile, bytes, 0644)
+	bytes2, _ := json.Marshal(logs)
+	out := new(bytes.Buffer)             // バッファ作成
+	json.Indent(out, bytes2, "", "    ") // JSONテキストの成形
+	ioutil.WriteFile(logFile, []byte(out.String()), 0644)
 }
 
 // リクエストを処理する関数
