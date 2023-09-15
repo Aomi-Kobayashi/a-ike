@@ -109,7 +109,6 @@ func loadLogs() []Log {
 		// 初期値0のLog型配列を作成し返す
 		return make([]Log, 0)
 	}
-
 	return logs // 成功したらlogsに返す
 }
 

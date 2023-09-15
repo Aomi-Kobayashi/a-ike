@@ -31,19 +31,20 @@ func main() {
 	// game.jsonを読み込み
 	games, err := ioutil.ReadFile("game.json")
 	if err != nil {
-		fmt.Println("file cannot read")
+		fmt.Println("file cannot read", err)
+		return
 	}
 
 	// sliceをstringに変換し文字列操作
-	s := string(games)
+	stringOperations := string(games)
 
 	// 「Valorant」を検索
-	fmt.Println(strings.Contains(s, "Valorant"))
+	fmt.Println(strings.Contains(stringOperations, "Valorant"))
 
 	// 文字列の長さをカウント
-	fmt.Println(len(s))
+	fmt.Println(len(stringOperations))
 
 	// 9~411までを指定して表示
-	fmt.Println(s[8:412])
+	fmt.Println(stringOperations[8:412])
 
 }
