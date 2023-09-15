@@ -55,7 +55,7 @@ func showHandler(writeRes http.ResponseWriter, req *http.Request) {
 	// html全体を出力
 	htmlBody := "<html><head><style>" +
 		"body { position: relative; width: auto; height: auto; text-align: center;}" +
-		"form {position: relative; z-index: 1; background: #FFFFFF; max-width: 360px; margin: 0 auto 100px; padding: 45px; text-align: center;}" +
+		"form {position: relative; z-index: 1; background: #eef; max-width: 360px; height: 20em; margin: 0 auto 100px; padding: 45px; text-align: center;}" +
 		"p { border: 1px solid silver; padding: 1em;} " +
 		"span { background-color: #eef; } " +
 		"</style></head><body><h1>ゲームフレンド募集掲示板</h1>" +
@@ -86,10 +86,10 @@ func writeHandler(writeRes http.ResponseWriter, req *http.Request) {
 // 画面上部の書き込みフォームを返す/writeに向けてPostで送信
 func getForm() string {
 	return "<div><form action='/write' method='POST'>" +
-		"名前 <input type='text' name='name' style='width:25em;'><br>" +
-		"ゲームタイトル <input type='text' name='gametitle' style='width:25em;'><br>" +
+		"名前 <input type='text' name='name' style='width:25em; height:2em;'><br>" +
+		"ゲームタイトル <input type='text' name='gametitle' style='width:25em; height:2em;'><br>" +
 		"本文 <input type='text' name='body' style='width:25em; height:10em;'>" +
-		"<br><input type='submit' id='write' value='書込'>" +
+		"<br><input type='submit' id='write' value='書込' style='margin-top: 50px;'>" +
 		"</form></div><hr>"
 }
 
